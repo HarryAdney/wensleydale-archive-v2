@@ -1,0 +1,22 @@
+{
+  "title": "Askrigg",
+  "description": "A picturesque village in upper Wensleydale, famous as the filming location for All Creatures Great and Small",
+  "thumbnail": "/images/askrigg/askrigg0002b.webp",
+  "images": [
+    {
+      "url": "/images/askrigg/askrigg0002b.webp",
+      "caption": "The historic Old Hall, a magnificent example of Yorkshire Dales architecture",
+      "date": "c.1920s"
+    },
+    {
+      "url": "/images/askrigg/mill-gill-force-sepia.webp",
+      "caption": "Mill Gill Force waterfall in its natural woodland setting",
+      "date": "c.1920s"
+    },
+    {
+      "url": "/images/askrigg/whitfield-gill-force.webp",
+      "caption": "Whitfield Upper Fall, showing the dramatic limestone geology",
+      "date": "c.1930s"
+    }
+  ]
+}

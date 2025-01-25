@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  return locations.map(location => ({
+    params: { slug: location.id },
+    props: { location },
+  }));
+}
+
+const { location } = Astro.props;
+---
+
+<Layout title={`${location.data.title} - Wensleydale Image Gallery`}>
+	<main>
+		<a href="/" class="back-link">&larr; Back to all locations</a>
+		<h1>{location.data.title}</h1>
+		{location.data.description && <p class="description">{location.data.description}</p>}
+		
+		<div class="image-grid">
+			{location.data.images.map((image) => (
+				<div class="image-card">
+					<img src={image.url} alt={image.caption || location.data.title} />
+					{image.caption && <p class="caption">{image.caption}</p>}
+					{image.date && <p class="date">{image.date}</p>}
+				</div>
+			))}
+		</div>
+
+		{location.data.images.length === 0 && (
+			<p class="no-images">No images have been added for this location yet.</p>
+		)}
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 1200px;
+		max-width: calc(100% - 2rem);
+		color: #2c3e1f;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	.back-link {
+		display: inline-block;
+		color: rgb(var(--accent));
+		text-decoration: none;
+		margin-bottom: 2rem;
+	}
+	.back-link:hover {
+		text-decoration: underline;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 700;
+		line-height: 1;
+		margin-bottom: 1rem;
+	}
+	.description {
+		font-size: 1.2rem;
+		opacity: 0.8;
+		margin-bottom: 2rem;
+	}
+	.image-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	.image-card {
+		background: rgba(255, 255, 255, 0.9);
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(var(--accent-light), 50%);
+	}
+	.image-card img {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+	}
+	.caption {
+		padding: 1rem;
+		margin: 0;
+		font-size: 0.9rem;
+	}
+	.date {
+		padding: 0 1rem 1rem;
+		margin: 0;
+		font-size: 0.8rem;
+		opacity: 0.7;
+	}
+	.no-images {
+		text-align: center;
+		padding: 3rem;
+		background: rgba(255, 255, 255, 0.9);
+		border-radius: 8px;
+		border: 1px solid rgba(var(--accent-light), 50%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+</style>

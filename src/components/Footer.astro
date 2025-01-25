@@ -1,0 +1,36 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; {currentYear} Wensleydale Image Gallery. All rights reserved.</p>
+    <p class="disclaimer">All images are protected by copyright and may not be reproduced without permission.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 4rem;
+    padding: 2rem 1rem;
+    background: rgba(var(--accent-light), 0.2);
+    border-top: 1px solid rgba(var(--accent-light), 0.5);
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: #2c3e1f;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .disclaimer {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+</style>
